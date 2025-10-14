@@ -1,55 +1,81 @@
-#include <iostream> 
-class mc{
-    private:
-        int architecture;
-        int Frequency;
-        int ports;
-    public:
-    mc(){
-        architecture = 8;
-        Frequency = 16;
-        ports = 23;
-    }
-    void input(){
-        std::cout <<"Enter architecture";
-        std::cin >>architecture;
-        while (architecture< 0 ){
-            std::cout << " Invalid , enter again " << '\n';
-            std::cin >> architecture ;
-        }
+#include <iostream>
+#include <string>
+#include <vector>
 
-        std::cout <<"Enter Frequancy";
-        std::cin >>Frequency;
-        while (Frequency< 0 ){
-            std::cout << " Invalid , enter again " << '\n';
-            std::cin >> Frequency ;
-        }
+class mc {
+private:
+    std::string architecture;
+    int frequency;
+    int ports;
 
-        std::cout <<"Enter ports";
-        std::cin >>ports;
-        while (ports< 0 ){
-            std::cout << " Invalid , enter again " << '\n';
-            std::cin >> ports ;
-        }
-    }  
-    void show(){
-        std::cout << " Type :" << architecture << '\n' ;
-        std::cout << " coefficient " << Frequency << '\n' ; 
-        std::cout << " Max current " << ports << '\n' ;
-    }
+public:
+    mc() {
+        architecture = "ARM";
+        frequency = 16;
+        ports = 23;
+    }
 
+    void input() {
+        std::cout << "Enter architecture: ";
+        std::cin >> architecture;
 
+        std::cout << "Enter frequency (MHz): ";
+        std::cin >> frequency;
+        while (frequency < 0) {
+            std::cout << "Invalid, enter again: ";
+            std::cin >> frequency;
+        }
 
+        std::cout << "Enter number of ports: ";
+        std::cin >> ports;
+        while (ports < 0) {
+            std::cout << "Invalid, enter again: ";
+            std::cin >> ports;
+        }
+    }
 
+    void show() const {
+        std::cout << "Architecture: " << architecture << '\n';
+        std::cout << "Frequency (MHz): " << frequency << '\n';
+        std::cout << "Ports: " << ports << "\n\n";
+    }
+
+    int getFrequency() const { return frequency; }
+    std::string getArchitecture() const { return architecture; }
 };
 
+
 int main() {
+    int n;
+    std::cout << "Enter number of microcontrollers: ";
+    std::cin >> n;
 
-    mc mc1;
-    mc1.input();
-    mc1.show();
+    std::vector<mc> controllers(n);
+    for (int i = 0; i < n; ++i) {
+        std::cout << "\n--- Controller " << i + 1 << " ---\n";
+        controllers[i].input();
+    }
 
-  
+    std::cout << "\nAll entered controllers:\n";
+    for (const auto& c : controllers)
+        c.show();
 
-  return 0;
+    int minFreq;
+    std::cout << "Enter minimum frequency to search for: ";
+    std::cin >> minFreq;
+
+    bool found = false;
+    std::cout << "\nControllers with frequency >= " << minFreq << " MHz:\n";
+    for (const auto& c : controllers) {
+        if (c.getFrequency() >= minFreq) {
+            c.show();
+            found = true;
+        }
+    }
+
+    if (!found) {
+        std::cout << "No controllers match the criterion.\n";
+    }
+
+    return 0;
 }
