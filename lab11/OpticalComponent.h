@@ -6,7 +6,7 @@
 
 struct ComponentData {
     std::string name;
-    double intensity;   // спільний фізичний параметр
+    double intensity;   
 };
 
 class OpticalComponent {

@@ -16,13 +16,13 @@ public:
         int n;
         std::cout << "How many components? ";
         std::cin >> n;
-        std::cin.ignore(); // ⬅ важливо перед getline
+        std::cin.ignore(); 
 
         for (int i = 0; i < n; i++) {
             int type;
             std::cout << "\n1 - LED, 2 - Photoresistor: ";
             std::cin >> type;
-            std::cin.ignore(); // очистити буфер
+            std::cin.ignore(); 
 
             std::string name;
             double intensity;
