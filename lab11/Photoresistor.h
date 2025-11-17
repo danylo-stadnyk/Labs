@@ -11,15 +11,15 @@ public:
     Photoresistor() 
         : OpticalComponent("Photoresistor", 0), resistance(0) {}
 
-    Photoresistor(std::string name, double lux, double resistance)
-        : OpticalComponent(name, lux), resistance(resistance) {}
+    Photoresistor(std::string name, double intensity, double resistance)
+        : OpticalComponent(name, intensity), resistance(resistance) {}
 
     ~Photoresistor() {}
 
     void printInfo() const override {
         std::cout << "Photoresistor: " << data.name 
-                  << " | Lux: " << data.value 
-                  << " | Resistance: " << resistance << " Ohm\n";
+                  << " | Intensity: " << data.intensity 
+                  << " lux | Resistance: " << resistance << " Ohm\n";
     }
 
     friend class OpticsFriend;

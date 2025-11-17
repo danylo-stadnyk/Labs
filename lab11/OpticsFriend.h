@@ -16,49 +16,51 @@ public:
         int n;
         std::cout << "How many components? ";
         std::cin >> n;
+        std::cin.ignore(); // ⬅ важливо перед getline
 
         for (int i = 0; i < n; i++) {
             int type;
-            std::cout << "1 - LED, 2 - Photoresistor: ";
+            std::cout << "\n1 - LED, 2 - Photoresistor: ";
             std::cin >> type;
+            std::cin.ignore(); // очистити буфер
+
+            std::string name;
+            double intensity;
+
+            std::cout << "Name: ";
+            std::getline(std::cin, name);
+
+            std::cout << "Intensity (lux): ";
+            std::cin >> intensity;
 
             if (type == 1) {
-                std::string name; 
-                double power, wavelength;
-                std::cout << "LED name: ";
-                std::cin >> name;
-                std::cout << "Power(mW): ";
-                std::cin >> power;
-                std::cout << "Wavelength(nm): ";
+                double wavelength;
+                std::cout << "Wavelength (nm): ";
                 std::cin >> wavelength;
 
-                arr.push_back(new LED(name, power, wavelength));
+                arr.push_back(new LED(name, intensity, wavelength));
             }
             else {
-                std::string name;
-                double lux, resistance;
-                std::cout << "Photoresistor name: ";
-                std::cin >> name;
-                std::cout << "Lux: ";
-                std::cin >> lux;
-                std::cout << "Resistance(Ohm): ";
+                double resistance;
+                std::cout << "Resistance (Ohm): ";
                 std::cin >> resistance;
 
-                arr.push_back(new Photoresistor(name, lux, resistance));
+                arr.push_back(new Photoresistor(name, intensity, resistance));
             }
+            std::cin.ignore();
         }
     }
 
     void printAll(const std::vector<OpticalComponent*>& arr) {
         std::cout << "\n--- Components List ---\n";
-        for (auto c : arr) 
+        for (auto c : arr)
             c->printInfo();
     }
 
-    double computeTotalValue(const std::vector<OpticalComponent*>& arr) {
+    double computeTotalIntensity(const std::vector<OpticalComponent*>& arr) {
         double total = 0;
         for (auto c : arr)
-            total += c->data.value;   
+            total += c->data.intensity;
         return total;
     }
 };

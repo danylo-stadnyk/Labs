@@ -10,15 +10,15 @@ private:
 public:
     LED() : OpticalComponent("LED", 0), wavelength(0) {}
 
-    LED(std::string name, double power, double wavelength)
-        : OpticalComponent(name, power), wavelength(wavelength) {}
+    LED(std::string name, double intensity, double wavelength)
+        : OpticalComponent(name, intensity), wavelength(wavelength) {}
 
     ~LED() {}
 
     void printInfo() const override {
         std::cout << "LED: " << data.name 
-                  << " | Power: " << data.value 
-                  << " mW | Wavelength: " << wavelength << " nm\n";
+                  << " | Intensity: " << data.intensity 
+                  << " lux | Wavelength: " << wavelength << " nm\n";
     }
 
     friend class OpticsFriend;

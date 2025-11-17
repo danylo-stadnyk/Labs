@@ -6,7 +6,7 @@
 
 struct ComponentData {
     std::string name;
-    double value;
+    double intensity;   // спільний фізичний параметр
 };
 
 class OpticalComponent {
@@ -16,16 +16,16 @@ protected:
 public:
     OpticalComponent() : data({"unnamed", 0}) {}
 
-    OpticalComponent(std::string name, double value) {
+    OpticalComponent(std::string name, double intensity) {
         data.name = name;
-        data.value = value;
+        data.intensity = intensity;
     }
 
     virtual ~OpticalComponent() {}
 
     virtual void printInfo() const {
         std::cout << "Component: " << data.name 
-                  << " | Value: " << data.value << "\n";
+                  << " | Intensity: " << data.intensity << " lux\n";
     }
 
     friend class OpticsFriend;

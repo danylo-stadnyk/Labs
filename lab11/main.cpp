@@ -8,8 +8,8 @@ int main() {
     friendObj.inputComponents(components);
     friendObj.printAll(components);
 
-    double total = friendObj.computeTotalValue(components);
-    std::cout << "\nTotal value (sum of lux/mW): " << total << "\n";
+    double total = friendObj.computeTotalIntensity(components);
+    std::cout << "\nTotal intensity (lux): " << total << "\n";
 
     for (auto c : components) delete c;
 
