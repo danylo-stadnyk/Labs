@@ -19,17 +19,17 @@ int main() {
     std::cout << "\n=== Original array ===\n";
     Utils::printArray(arr);
 
-    // Сортування
+   
     Utils::sortVectors(arr);
 
     std::cout << "\n=== Sorted by length ===\n";
     Utils::printArray(arr);
 
-    // Середня довжина
+   
     double avg = Utils::averageLength(arr);
     std::cout << "\nAverage length = " << avg << "\n";
 
-    // Демонстрація операторів
+   
     std::cout << "\n=== Operators demo ===\n";
     std::cout << "v1 <= v2 : " << (arr[0] <= arr[1] ? "true" : "false") << "\n";
 

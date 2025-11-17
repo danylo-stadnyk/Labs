@@ -19,13 +19,13 @@ public:
 
     double length() const;
 
-    // Оператор <= (порівняння за довжиною)
+    
     bool operator<=(const Vector& other) const;
 
-    // Оператор + (додавання векторів)
+    
     Vector operator+(const Vector& other) const;
 
-    // Ввід / вивід
+    
     friend std::ostream& operator<<(std::ostream& out, const Vector& v);
     friend std::istream& operator>>(std::istream& in, Vector& v);
 };
