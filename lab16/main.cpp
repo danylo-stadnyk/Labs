@@ -19,6 +19,23 @@ int main() {
     std::cout << "weak_ptr не збільшує use_count: " << smc1.use_count() << "\n";
 
     
+    {
+        std::shared_ptr<Microcontroller> smc3 = smc1;
+        std::cout << "Всередині блоку, use_count = " << smc1.use_count() << std::endl;
+    }
+    
+    std::cout << "Після блоку, use_count = " << smc1.use_count() << std::endl;
+
+    
+    if (auto locked = wmc.lock()) {
+        std::cout << "weak_ptr успішно lock(): об'єкт існує — ";
+        locked->display();
+        std::cout << std::endl;
+    } else {
+        std::cout << "weak_ptr: об'єкт уже знищено\n";
+    }
+
+    
     SmartList list;
     list.push_back(std::make_shared<Microcontroller>("PIC", 20, 16));
     list.push_back(std::make_shared<Microcontroller>("ARM Cortex-M4", 168, 40));
